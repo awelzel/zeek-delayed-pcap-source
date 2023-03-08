@@ -1,4 +1,15 @@
 DelayedPcapSource
 =================================
 
-TODO: tell people what your package does!
+A packet source that can delay packets or mangle their timestamps.
+
+This is just a hacked up Zeek's Pcap Source.
+
+Let packet timestamps be 6 seconds in the past:
+
+    zeek -C -i  delayedpcap::lo -f 'port 80' Zeek::DelayedPcapSource::move_interval=-6.0sec;
+
+
+Delay packet release by 6 seconds (this currently busy polls):
+
+    zeek -C -i  delayedpcap::lo -f 'port 80' Zeek::DelayedPcapSource::delay=6.0sec;
